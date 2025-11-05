@@ -52,14 +52,13 @@ def main():
     json_bytes = json_text.encode("utf-8")
     print("JSON (from protobuf Message):")
     print(json_text)
-    print("JSON size (UTF-8):", len(json_bytes), "bytes")
     print("Protobuf size:", len(proto_bytes), "bytes\n")
 
     # 2) Manual native JSON (for exact control)
     native = []
     for b in collection.books:
         native.append({
-            "title": b.title,
+            "title":b.title,
             "author": b.author,
             "isbn": b.isbn,
             "year": b.year,
