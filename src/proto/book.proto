@@ -1,0 +1,46 @@
+syntax = "proto3";
+
+package book;
+option java_package = "org.ds.proto";
+option java_outer_classname = "BookOuterClass";
+option java_multiple_files = true;
+
+
+message Book {
+  string title = 1;
+  string author = 2;
+  string isbn = 3;
+  int32 year = 4;
+  Genre genre = 5;
+  repeated string tags = 6;
+  Publisher publisher = 7;
+
+  message Publisher {
+    string name = 1;
+    string address = 2;
+  }
+
+  enum Genre {
+    UNKNOWN = 0;
+    FICTION = 1;
+    NON_FICTION = 2;
+    SCIENCE = 3;
+    HISTORY = 4;
+  }
+}
+
+message BookCollection {
+  repeated Book books = 1;
+}
+
+message BookRequest {
+  string isbn = 1;
+}
+
+message BookResponse {
+  Book book = 1;
+}
+
+service BookService {
+  rpc GetBook (BookRequest) returns (BookResponse);
+}
